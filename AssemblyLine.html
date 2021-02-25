@@ -1,0 +1,131 @@
+
+<html>
+<head>
+<link rel="stylesheet" href="main.css" charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+<script src="Script.js"></script>
+<style>
+</style>
+</head>
+
+<body style="background-color: #e6e6e6;">
+<form enctype="multipart/form-data" id="theForm" action="PHP_DATABASE_CREATE2.php" method="POST">
+<div class="container" style="position: fixed; border-bottom: 3px solid #4E4D5C; width: 100%; height: 50px; display: block; background-color: #aeacb9; z-index: 1;">
+<span class="c_title"><strong>AltAnalyze Expression Viewer Portal</strong></span>
+<span class="c_divider">|</span>
+<span class="c_on">Create<i class="glyphicon glyphicon-plus" style="margin: 5px;"></i></span>
+<span class="c_off" onclick="onSelectGo();">Go<i class="glyphicon glyphicon-arrow-right" style="margin: 5px;"></i></span>
+</div>
+<div class="container" style="position: relative; top: 75px;">
+	<h2>Expression Viewer Creation</h2>
+	<div id="Pre-Make" class="panel panel-default" style="background-color: #f2f2f2; opacity: 1; max-height: 1600px;">
+		<div class="panel-body">
+			<h4>Author information</h4>
+			<br>
+			<span>Enter name of author/group</span>
+			<span class="a"><input class="a" type="text" name='author_name' placeholder="John Doe"></input></span>
+			<div class="divider-plain"></div>
+			<span>Enter name of dataset</span>
+			<span class="a"><input class="a" id="user_db_id" type="text" name='user_db_name' placeholder="Single cell data"></input></span>	
+			<div class="divider-plain"></div>
+			<span>Will this viewer be public, or private?</span>
+			<span class="a">
+				<select class="a" name="pubpri_status" type="text" placeholder="Single cell data" value="Public">
+					<option>Public</option>
+					<option>Private</option>
+				</select>
+			</span>
+		</div>
+
+		<div class="divider-big"></div>
+
+		<div class="panel-body">
+			<h4>Data set</h4>
+			<br>
+			<span class="a">Norm file:</span>
+			<span class="b"><input id="Norm-Express-Input" type='file' accept='txt/*' name='norm_exp'/></span><span class="b"><img src="instruc_gcm.png" width="550px" height="100px"/></span>
+			<div class="divider-plain"></div>
+			<span class="a">Group file:</span>
+			<span class="b"><input id="Norm-Group-Input" type='file' accept='txt/*' name='norm_group'></input></span><span class="b"><img src="group_inst.png" width="550px" height="100px"/></span>
+			<div class="divider-plain"></div>
+			<span class="a">Tick file:</span>
+			<span class="b"><input id="Norm-Tick-Input" type='file' accept='txt/*' name='norm_tick'></input></span><span class="b"><img src="tick_instr.png" width="550px" height="100px"/></span>
+		</div>
+
+		<div class="divider-big"></div>
+
+		<div class="panel-body">
+			<h4>Loadout genes</h4>
+			<h5 class="a">What genes do you want to show up on the front page?</h5>
+			<div class="divider-plain"></div>
+			<span class="a">Gene #1:</span>
+			<span class="b"><input class="a" type="text" name='opening_uid1' value="Meis1" placeholder="Meis1"></span>
+			<br>
+			<span class="a">Gene #2:</span>
+			<span class="b"><input class="a" type="text" name='opening_uid2' value="Irf8" placeholder="Irf8"></span>
+			<br>
+			<span class="a">Gene #3:</span>
+			<span class="b"><input class="a" type="text" name='opening_uid3' value="Mmp9" placeholder="Mmp9"></span>
+			<br>
+			<span class="a">Gene #4:</span>
+			<span class="b"><input class="a" type="text" name='opening_uid4' value="Klf4" placeholder="Klf4"></span>
+			<br>
+			<span class="a">Gene #5:</span>
+			<span class="b"><input class="a" type="text" name='opening_uid5' value="Itga2b" placeholder="Itga2b"></span>
+		</div>
+
+		<div class="divider-big"></div>
+
+		<div class="panel-body">
+			<h4>Optimization options</h4>
+			<br>
+			<span class="a"><input class="a" type="checkbox" name="use_sample_check"/></span>
+			<span class="b">Use a sample? (Recommended for very large datasets <strong>10k+ cells</strong>)</span>
+			<br>
+			<span class="a"><input class="a" type="text" name="use_sample_number" placeholder="1000"/></span>
+			<span class="b">How many cells to use for the sample?</span>
+			<div class="divider-plain"></div>
+			<span class="a"><input class="a" type="checkbox" name="use_cell_animate"/></span>
+			<span class="b">Default cell animate (<strong>DO NOT</strong> use unless your dataset has less than 600 cells)</span>
+			<div class="divider-plain"></div>
+			<span class="a"><input class="a" type="checkbox" name="use_cell_hover"/></span>
+			<span class="b">Default cell hovers (Recommended for all but the largest datasets)</span>
+		</div>
+
+		<div class="divider-big"></div>
+
+		<div class="panel-body">
+			<h4>Initialize Creation</h4>
+			<br>
+			</form>
+			<button type="button" class="btn btn-success" onclick="functest1()">Create Viewer</button>
+		</div>
+
+	</div>
+
+	<div id="Make" class="panel panel-default" style="background-color: #f2f2f2; opacity: 0; max-height: 0px;">
+		<div class="panel-body">
+			<a href="http://www.altanalyze.org/ICGS/AssemblyLine/AssemblyLine.html"><i class="glyphicon glyphicon-chevron-left"></i>Go back</a>
+			<br>
+			<h4>Progress</h4>
+			<table class="progress_table">
+				<tr><td></td><td><strong>Status</strong></td></tr>
+				<tr><td>Data Upload</td><td id="progress_step1" style="color: gold;">Pending</td></tr>
+				<tr><td>SQL database creation</td><td id="progress_step2" style="color: gray;">Pending</td></tr>
+				<tr><td>Application creation</td><td id="progress_step3" style="color: gray;">Pending</td></tr>
+			</table>
+		</div>
+		<div class="divider-big"></div>
+		<div id="Make_final_panel" class="panel-body" style="opacity: 0; max-height: 0px;">
+			<h4>Link</h4>
+			<h5 class="a">Your viewer is ready! Please click the link below.</h5>
+			<div class="divider-plain"></div>
+			<a id="linkout" href="" style="font-size:18px;"></a>
+		</div>
+	</div>
+</div>
+</body>
+</html>
