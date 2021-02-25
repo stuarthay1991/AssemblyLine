@@ -1,0 +1,4 @@
+LungMAP2-DCC
+32643
+Endothelial cells B|Endothelial cells D|Endothelial cell_TMEM100 high|Nonclassical Monocyte|Myeloid cell|OLR1+ Classical Monocyte|Macrophage|M2 Macrophage|DC sub-cluster 2|Dendritic Cells|Epithelial Subtype ciliated|NK|Plasmacytoid Dendritic|Plasma|Mast Cell-Basophil Type 1|T-cell|B Cells|Endothelial cell|Pericyte-Smooth muscle cell|Epithelial cell_PLA2G2A high|Club Cells|AT1 cell|AT2 cell|AT2 cell subset-2
+8077

@@ -1,0 +1,34 @@
+<?php
+$database ="Lung-BOS.db";
+$test_uid1 ="SFTPD";
+$test_uid2 ="AGER";
+$test_uid3 ="S100A12";
+$test_uid4 ="SPP1";
+$test_uid5 ="KLRF1";
+$t1_out = json_encode("abc");
+$t2_out = json_encode("abc");
+$t3_out = json_encode("abc");
+$t4_out = json_encode("abc");
+$t5_out = json_encode("abc");
+$col_array = json_encode("abc");
+$g_array = json_encode("abc");
+$ch_col_array = json_encode("abc");
+$chX_col_array = json_encode("abc");
+$chW_g_array = json_encode("abc");
+$chX_g_array = json_encode("abc");
+$chWild1_out = json_encode("abc");
+$chWild2_out = json_encode("abc");
+$chWild3_out = json_encode("abc");
+$chWild4_out = json_encode("abc");
+$chWild5_out = json_encode("abc");
+$chX1_out = json_encode("abc");
+$chX2_out = json_encode("abc");
+$chX3_out = json_encode("abc");
+$chX4_out = json_encode("abc");
+$chX5_out = json_encode("abc");
+$test_out = json_encode("abc");
+$ch_test_out = json_encode("abc");
+$chX_test_out = json_encode("abc");
+$check_return = json_encode("0");
+$TICKS_ALL_TABLE_out = json_encode("abc");
+?>
