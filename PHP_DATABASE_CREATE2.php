@@ -156,7 +156,6 @@ else
 copy("MultiGene/PHP_FUNCTIONS.php", ($prefix_root_string . "/PHP_FUNCTIONS.php"));
 copy("MultiGene/miscFunc_DIRECT.js", ($prefix_root_string . "/miscFunc_DIRECT.js"));
 copy("MultiGene/main.php", ($prefix_root_string . "/main.php"));
-copy("MultiGene/opt.js", ($prefix_root_string . "/opt.js"));
 copy("MultiGene/User.php", ($prefix_root_string . "/User.php"));
 copy("spinner-loop.gif", ($prefix_root_string . "/spinner-loop.gif"));
 }
