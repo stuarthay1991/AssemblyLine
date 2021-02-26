@@ -145,13 +145,24 @@ else
 $OUV_array = [$OUV_1, $OUV_2, $OUV_3, $OUV_4, $OUV_5];
 
 //Copy needed files to the new directory.
+if($_POST['multigene_status'] == "5 gene")
+{
 copy("PHP_FUNCTIONS.php", ($prefix_root_string . "/PHP_FUNCTIONS.php"));
 copy("User.php", ($prefix_root_string . "/User.php"));
 copy("spinner-loop.gif", ($prefix_root_string . "/spinner-loop.gif"));
-
+}
+else
+{
+copy("MultiGene/PHP_FUNCTIONS.php", ($prefix_root_string . "/PHP_FUNCTIONS.php"));
+copy("MultiGene/miscFunc_DIRECT.js", ($prefix_root_string . "/miscFunc_DIRECT.js"));
+copy("MultiGene/main.php", ($prefix_root_string . "/main.php"));
+copy("MultiGene/opt.js", ($prefix_root_string . "/opt.js"));
+copy("MultiGene/User.php", ($prefix_root_string . "/User.php"));
+copy("spinner-loop.gif", ($prefix_root_string . "/spinner-loop.gif"));
+}
+copy("MultiGene/Colors.js", ($prefix_root_string . "/Colors.js"));
 //Write the user's set opening UIDs into the new USER_CONSTANTS.php file in the new directory.
 createPHPconstants($db_name, $OUV_array, $prefix_root_string);
-writeColorFile($prefix_root_string);
 $db_name = $prefix_root_string . "/" . $db_name;
 $overwrite_flag = 0;
 
@@ -165,6 +176,22 @@ else
 {
 errorHandler('norm_exp');
 $norm_exp_file = $_FILES['norm_exp']['tmp_name'];
+$norm_exp_name = $_FILES['norm_exp']['name'];
+$norm_exp_path = "/var/www/tmp/";
+if(".zip" == substr($norm_exp_name, -4))
+{
+	$zip = new ZipArchive;
+	$res = $zip->open($norm_exp_file);
+	if ($res === TRUE) {
+		$norm_exp_file = substr($norm_exp_name, 0, (strlen($norm_exp_name) - 4));
+	    $zip->extractTo('/var/www/tmp/', array($norm_exp_file));
+	    $zip->close();
+	    $norm_exp_file = "/var/www/tmp/" . $norm_exp_file;
+	    echo 'ok';
+	} else {
+	    echo 'failed';
+	}
+}
 $sqlite = new SQLiteCreateTable((new SQLiteConnection())->connect($db_name));
 $trick_wagon = unionBuild("all_WT");
 $sqlite->createTables($trick_wagon);

@@ -164,7 +164,7 @@ if(isset($_POST['submit_all']) OR isset($_POST['submit_all_alt']))
 }
 else
 {
-	$uids = "SFTPD,AGER,S100A12,SPP1,KLRF1,IRF8,MEIS1,MEIS2,MEIS3,MEIS4";
+	$uids = "Sftpd,Ager,S100a12,Spp1,Klrf1,Irf8,Meis1,Meis2,Meis3,Meis4";
 }
 $uids = explode(",", $uids);
 
@@ -292,7 +292,7 @@ $database = json_encode($database);
 			<div id="Input_Panel" style="position:relative;">
 	    		<div id="Input_1" class="output_div">
 					<div id="I_1test_2">
-					<textarea id="SEARCH_BAR1" name="uids" rows="3" style="width: 400px;" value="SFTPD,AGER,S100A12,SPP1,KLRF1,IRF8,MEIS1,MEIS2,MEIS3,MEIS4">SFTPD,AGER,S100A12,SPP1,KLRF1,IRF8,MEIS1,MEIS2,MEIS3,MEIS4</textarea>
+					<textarea id="SEARCH_BAR1" name="uids" rows="3" style="width: 400px;" value="Sftpd,Ager,S100a12,Spp1,Klrf1,Irf8,Meis1,Meis2,Meis3,Meis4">Sftpd,Ager,S100a12,Spp1,Klrf1,Irf8,Meis1,Meis2,Meis3,Meis4</textarea>
 					</div>
 
 				</div>
@@ -558,7 +558,7 @@ var test_y = <?php echo $test_out;?>;
 var js_ticks_all_table = <?php echo $TICKS_ALL_TABLE_out;?>;
 var c = <?php echo $col_array;?>;
 var pile_of_div_ids = ["Output_Div_1","Output_Div_2","Output_Div_3","Output_Div_4","Output_Div_5","Output_Div_6","Output_Div_7","Output_Div_8","Output_Div_9","Output_Div_10"];
-var pile_of_uids = ["SFTPD","AGER","S100A12","SPP1","KLRF1","IRF8","MEIS1","MEIS2","MEIS3","MEIS4"];
+var pile_of_uids = ["Sftpd","Ager","S100a12","Spp1","Klrf1","Irf8","Meis1","Meis2","Meis3","Meis4"];
 
 var sample_ints = <?php echo $sample_ints;?>;
 

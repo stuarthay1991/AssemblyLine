@@ -18,7 +18,8 @@ $db->enableExceptions(true);
 
 //DB access
 $uid = $_POST['uid'];
-$uid = strtoupper($uid);
+$uid = strtolower($uid);
+$uid = ucwords($uid);
 
 //START queries
 //all_WT
