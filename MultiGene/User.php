@@ -160,13 +160,13 @@ if(isset($_POST['submit_all_alt']))
 if(isset($_POST['submit_all']) OR isset($_POST['submit_all_alt']))
 {
 	//DB access
-	$uids = $_POST['uids'];
+	$uids_string = $_POST['uids'];
 }
 else
 {
-	$uids = "Sftpd,Ager,S100a12,Spp1,Klrf1,Irf8,Meis1,Meis2,Meis3,Meis4";
+	$uids_string = $test_uid1 . "," . $test_uid2 . "," . $test_uid3 . "," . $test_uid4 . "," . $test_uid5;
 }
-$uids = explode(",", $uids);
+$uids = explode(",", $uids_string);
 
 //START queries
 //all_WT
@@ -176,11 +176,6 @@ $t2 = tableCall($db, "all_WT", $uids[1]);
 $t3 = tableCall($db, "all_WT", $uids[2]); 
 $t4 = tableCall($db, "all_WT", $uids[3]); 
 $t5 = tableCall($db, "all_WT", $uids[4]); 
-$t6 = tableCall($db, "all_WT", $uids[5]);
-$t7 = tableCall($db, "all_WT", $uids[6]);
-$t8 = tableCall($db, "all_WT", $uids[7]);
-$t9 = tableCall($db, "all_WT", $uids[8]);
-$t10 = tableCall($db, "all_WT", $uids[9]);
 
 $test = generic_tableCall($db, "all_WT");
 
@@ -220,12 +215,7 @@ $t1_out= finalizeExpressionFormat($t1, $all_wt_cells);
 $t2_out = finalizeExpressionFormat($t2, $all_wt_cells);
 $t3_out = finalizeExpressionFormat($t3, $all_wt_cells);
 $t4_out = finalizeExpressionFormat($t4, $all_wt_cells);
-$t5_out = finalizeExpressionFormat($t5, $all_wt_cells);
-$t6_out = finalizeExpressionFormat($t6, $all_wt_cells);
-$t7_out = finalizeExpressionFormat($t7, $all_wt_cells);
-$t8_out = finalizeExpressionFormat($t8, $all_wt_cells);
-$t9_out = finalizeExpressionFormat($t9, $all_wt_cells);
-$t10_out = finalizeExpressionFormat($t10, $all_wt_cells, 1);
+$t5_out = finalizeExpressionFormat($t5, $all_wt_cells, 1);
 endJSON("temp_exp_file.json");
 
 //All Version Ticks
@@ -245,6 +235,8 @@ $col_array = json_encode($col_array);
 
 $database = json_encode($database);
 
+$uids = json_encode($uids);
+$uids_string_enc = json_encode($uids_string);
 //exec("node " . "node_test1.js");
 
 ?>
@@ -292,12 +284,12 @@ $database = json_encode($database);
 			<div id="Input_Panel" style="position:relative;">
 	    		<div id="Input_1" class="output_div">
 					<div id="I_1test_2">
-					<textarea id="SEARCH_BAR1" name="uids" rows="3" style="width: 400px;" value="Sftpd,Ager,S100a12,Spp1,Klrf1,Irf8,Meis1,Meis2,Meis3,Meis4">Sftpd,Ager,S100a12,Spp1,Klrf1,Irf8,Meis1,Meis2,Meis3,Meis4</textarea>
+					<textarea id="SEARCH_BAR1" name="uids" rows="3" style="width: 400px;" value=<?php echo $uids_string_enc;?>;><?php echo $uids_string;?></textarea>
 					</div>
 
 				</div>
 				<div>
-				</div> 		
+				</div>
 	    	</div>   	
 			</form>
 			<button id="in_button" class="btn btn-success" name="submit_all" onclick="functest1()" style="position: relative; left: 7px;">Submit</button>
@@ -345,12 +337,6 @@ $database = json_encode($database);
     	<div id="Output_Div_3" style="position: relative;"></div>
     	<div id="Output_Div_4" style="position: relative;"></div>
     	<div id="Output_Div_5" style="position: relative;"></div>
-    	<div id="Output_Div_6" style="position: relative;"></div>
-    	<div id="Output_Div_7" style="position: relative;"></div>
-    	<div id="Output_Div_8" style="position: relative;"></div>
-    	<div id="Output_Div_9" style="position: relative;"></div>
-    	<div id="Output_Div_10" style="position: relative;"></div>
-
     	</div>
 
 		<div id="All_Ver_Tick" style="position: relative;"></div>
@@ -557,21 +543,16 @@ $("#old_cell_search_input").easyAutocomplete(cell_norm_search_features);
 var test_y = <?php echo $test_out;?>;
 var js_ticks_all_table = <?php echo $TICKS_ALL_TABLE_out;?>;
 var c = <?php echo $col_array;?>;
-var pile_of_div_ids = ["Output_Div_1","Output_Div_2","Output_Div_3","Output_Div_4","Output_Div_5","Output_Div_6","Output_Div_7","Output_Div_8","Output_Div_9","Output_Div_10"];
-var pile_of_uids = ["Sftpd","Ager","S100a12","Spp1","Klrf1","Irf8","Meis1","Meis2","Meis3","Meis4"];
+var pile_of_div_ids = ["Output_Div_1","Output_Div_2","Output_Div_3","Output_Div_4","Output_Div_5"];
+var pile_of_uids = <?php echo $uids;?>;
 
 var sample_ints = <?php echo $sample_ints;?>;
 
-var title1 = <?php echo json_encode($uids[0]);?>;
-var title2 = <?php echo json_encode($uids[1]);?>;
-var title3 = <?php echo json_encode($uids[2]);?>;
-var title4 = <?php echo json_encode($uids[3]);?>;
-var title5 = <?php echo json_encode($uids[4]);?>;
-var title6 = <?php echo json_encode($uids[5]);?>;
-var title7 = <?php echo json_encode($uids[6]);?>;
-var title8 = <?php echo json_encode($uids[7]);?>;
-var title9 = <?php echo json_encode($uids[8]);?>;
-var title10 = <?php echo json_encode($uids[9]);?>;
+var title1 = pile_of_uids[0];
+var title2 = pile_of_uids[1];
+var title3 = pile_of_uids[2];
+var title4 = pile_of_uids[3];
+var title5 = pile_of_uids[4];
 var group_dict = <?php echo json_encode($g_array);?>;
 
 if(sample_checkbox_set == 1)
@@ -585,15 +566,8 @@ var y2 = <?php echo $t2_out;?>;
 var y3 = <?php echo $t3_out;?>;
 var y4 = <?php echo $t4_out;?>;
 var y5 = <?php echo $t5_out;?>;
-var y6 = <?php echo $t6_out;?>;
-var y7 = <?php echo $t7_out;?>;
-var y8 = <?php echo $t8_out;?>;
-var y9 = <?php echo $t9_out;?>;
-var y10 = <?php echo $t10_out;?>;
 
-console.log("fkubsdik", y8);
-
-var norm_view_all_expression = [y1, y2, y3, y4, y5, y6, y7, y8, y9, y10];
+var norm_view_all_expression = [y1, y2, y3, y4, y5];
 
 //The driver in this application is not used in the traditional sense; rather, it tries to figure out what types of data 
 //the requested database does have and does not have. This is absolutely a necessity to have in order for the application
@@ -640,11 +614,6 @@ var div2_SVG = new buildD3("Output_Div_2", c, y2, CONSTANTS.DEFAULT_SCALE, title
 var div3_SVG = new buildD3("Output_Div_3", c, y3, CONSTANTS.DEFAULT_SCALE, title3, group_dict, standard_ratio, screen_adj);
 var div4_SVG = new buildD3("Output_Div_4", c, y4, CONSTANTS.DEFAULT_SCALE, title4, group_dict, standard_ratio, screen_adj);
 var div5_SVG = new buildD3("Output_Div_5", c, y5, CONSTANTS.DEFAULT_SCALE, title5, group_dict, standard_ratio, screen_adj);
-var div6_SVG = new buildD3("Output_Div_6", c, y6, CONSTANTS.DEFAULT_SCALE, title6, group_dict, standard_ratio, screen_adj);
-var div7_SVG = new buildD3("Output_Div_7", c, y7, CONSTANTS.DEFAULT_SCALE, title7, group_dict, standard_ratio, screen_adj);
-var div8_SVG = new buildD3("Output_Div_8", c, y8, CONSTANTS.DEFAULT_SCALE, title8, group_dict, standard_ratio, screen_adj);
-var div9_SVG = new buildD3("Output_Div_9", c, y9, CONSTANTS.DEFAULT_SCALE, title9, group_dict, standard_ratio, screen_adj);
-var div10_SVG = new buildD3("Output_Div_10", c, y10, CONSTANTS.DEFAULT_SCALE, title10, group_dict, standard_ratio, screen_adj);
 
 test_SVG.logCoordOnly(1, "TEST");
 requestAnimationFrame(div1_SVG.write);
@@ -652,21 +621,11 @@ requestAnimationFrame(div2_SVG.write);
 requestAnimationFrame(div3_SVG.write);
 requestAnimationFrame(div4_SVG.write);
 requestAnimationFrame(div5_SVG.write);
-requestAnimationFrame(div6_SVG.write);
-requestAnimationFrame(div7_SVG.write);
-requestAnimationFrame(div8_SVG.write);
-requestAnimationFrame(div9_SVG.write);
-requestAnimationFrame(div10_SVG.write);
 div1_SVG.write(1, "None");
 div2_SVG.write(1, "None");
 div3_SVG.write(1, "None");
 div4_SVG.write(1, "None");
 div5_SVG.write(1, "None");
-div6_SVG.write(1, "None");
-div7_SVG.write(1, "None");
-div8_SVG.write(1, "None");
-div9_SVG.write(1, "None");
-div10_SVG.write(1, "None");
 
 var KingOnion = new HeaderOnion(test_SVG.logDictXGroups, "ALL_HEAD", screen_adj, basicOnion, "BASIC_COLOR", 0, 0, norm_group_nameToNumberDict);
 KingOnion.writeHeadSVG();
@@ -679,7 +638,7 @@ TickSvgObject.writeHeadSVG();
 TickSvgObject.writeTicks();
 }
 
-var UNI_SVG_LIST = [div1_SVG, div2_SVG, div3_SVG, div4_SVG, div5_SVG, div6_SVG, div7_SVG, div8_SVG, div9_SVG, div10_SVG];
+var UNI_SVG_LIST = [div1_SVG, div2_SVG, div3_SVG, div4_SVG, div5_SVG];
 
 var UNI_SVG_HEADER = KingOnion;
 var UNI_SVG_TICKS = TickSvgObject;
